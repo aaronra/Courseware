@@ -1,0 +1,32 @@
+
+.header {
+
+}
+
+.navbar-inverse,
+.navbar-inverse h1 {
+    color: white;
+}
+
+body {
+    background: url('http://i.huffpost.com/gen/1656182/images/o-AMERICAN-FLAG-facebook.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+}
+
+.text-footer {
+    padding: 10px 0px;
+}
+
+.blur {
+    opacity: 0.85; /* Opacity for Modern Browsers */
+    filter: alpha(opacity=85); /* Opacity for IE8 and lower */
+    zoom: 1; /* Fix for IE7 */
+}
+
