@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <title>SNC E-learning</title>
-
+    <link rel="icon" href="http://www.araldito.com/wp-content/uploads/2014/06/e2.jpg" type="image/jpg" sizes="16x16">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
@@ -38,24 +38,23 @@
         <h2 id="c1">Tutorials</h2>
 
         <p>Quick and easy-to-follow practical guides to get you up and
-            running with <a href="view/html/index.html">HTML</a>, <a href="view/css/index.html">CSS</a>, and <a
-                    href="view/js/index.html">JavaScript</a>, following best-practices every step
+            running with HTML, CSS, and JavaScript, following best-practices every step
             of the way.</p>
 
         <h2>HTML</h2>
 
-        <p>With <a href="view/html/index.html">HTML</a> you can create your own Web site.
+        <p>With HTML you can create your own Web site.
             This tutorial teaches you everything about HTML.
             HTML is easy to learn - You will enjoy it.</p>
 
         <h2>CSS</h2>
 
         <p>Save a lot of work with CSS!<br/>
-            In our <a href="view/css/index.html">CSS</a> tutorial you will learn how to use CSS to control the style and layout of multiple Web pages all at once.</p>
+            In our CSS tutorial you will learn how to use CSS to control the style and layout of multiple Web pages all at once.</p>
 
         <h2>JavaScript</h2>
 
-        <p><a href="view/js/index.html">JavaScript</a> is the programming language of HTML and the Web.
+        <p>JavaScript is the programming language of HTML and the Web.
 
             Programming makes computers do what you want them to do.
 

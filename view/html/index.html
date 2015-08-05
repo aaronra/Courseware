@@ -30,15 +30,211 @@
 
     <section id="main_content">
 
+        <div class="chapter">
+            <div class="prev"><a class="chapter" href="/index.php">« Back to Home</a></div>
+            <div class="next"><a class="chapter" href="#">Next Chapter »</a></div>
+        </div>
 
-        <h2 id="c1">Tutorials</h2>
+        <h2>What is HTML?</h2>
 
-        <p>Quick and easy-to-follow practical guides to get you up and
-            running with <a href="#">HTML</a>, <a
-                    href="#">CSS</a>, and <a
-                    href="#">JavaScript</a>, following best-practices every step
-            of the way.</p>
+        <p>HTML is a <em>markup</em> language for <em>describing</em> web documents (web pages).</p>
+        <ul>
+            <li>HTML stands for <b>H</b>yper <b>T</b>ext <b>M</b>arkup <b>L</b>anguage</li>
+            <li>A markup language is a set of <b>markup tags</b></li>
+            <li>HTML documents are described by <b>HTML tags</b></li>
+            <li>Each HTML tag <b>describes</b> different document content</li>
+        </ul>
 
+        <hr>
+        <h2>HTML Example</h2>
+
+        <div class="example">
+            <h2 class="example">A small HTML document:</h2>
+
+            <div class="example_code notranslate htmlHigh">
+                <span class="highLT">&lt;</span><span class="highELE">!DOCTYPE</span> <span
+                    class="highATT">html</span><span class="highGT">&gt;</span><br>
+                <span class="highLT">&lt;</span><span class="highELE">html</span><span
+                    class="highGT">&gt;</span><br><span class="highLT">&lt;</span><span class="highELE">head</span><span
+                    class="highGT">&gt;</span><br><span class="highLT">&lt;</span><span
+                    class="highELE">title</span><span class="highGT">&gt;</span>Page Title<span
+                    class="highLT">&lt;</span><span class="highELE">/title</span><span class="highGT">&gt;</span><br>
+                <span class="highLT">&lt;</span><span class="highELE">/head</span><span class="highGT">&gt;</span><br>
+                <span class="highLT">&lt;</span><span class="highELE">body</span><span
+                    class="highGT">&gt;</span><br><br><span class="highLT">&lt;</span><span
+                    class="highELE">h1</span><span class="highGT">&gt;</span>My First Heading<span
+                    class="highLT">&lt;</span><span class="highELE">/h1</span><span class="highGT">&gt;</span><br><span
+                    class="highLT">&lt;</span><span class="highELE">p</span><span class="highGT">&gt;</span>My first
+                paragraph.<span class="highLT">&lt;</span><span class="highELE">/p</span><span
+                    class="highGT">&gt;</span><br><br>
+                <span class="highLT">&lt;</span><span class="highELE">/body</span><span
+                    class="highGT">&gt;</span><br><span class="highLT">&lt;</span><span
+                    class="highELE">/html</span><span class="highGT">&gt;</span>
+            </div>
+            <br><a target="_blank" href="indexCompiler.html" class="tryitbtn">Try it Yourself »</a>
+        </div>
+        <hr>
+        <h2>Example Explained</h2>
+        <ul>
+            <li>The <strong>DOCTYPE</strong> declaration defines the document type to be HTML</li>
+            <li>The text between <strong>&lt;html&gt;</strong> and <strong>&lt;/html&gt;</strong> describes an HTML
+                document
+            </li>
+            <li>The text between <strong>&lt;head&gt;</strong> and <strong>&lt;/head&gt;</strong> provides information
+                about the document
+            </li>
+            <li>The text between <strong>&lt;title&gt;</strong> and <strong>&lt;/title&gt;</strong> provides a title for
+                the document
+            </li>
+            <li>The text between <strong>&lt;body&gt;</strong> and <strong>&lt;/body&gt;</strong> describes the visible
+                page content
+            </li>
+            <li>The text between <strong>&lt;h1&gt;</strong> and <strong>&lt;/h1&gt;</strong> describes a heading</li>
+            <li>The text between <strong>&lt;p&gt;</strong> and <strong>&lt;/p&gt;</strong> describes a paragraph</li>
+        </ul>
+        <p>Using this description, a web browser can display a document with a heading and a paragraph.</p>
+        <hr>
+        <h2>HTML Tags</h2>
+
+        <p>HTML tags are <strong>keywords</strong> (tag names) surrounded by <b>angle brackets</b>:</p>
+
+        <div class="htmlHigh"
+             style="font-size:20px;padding:10px;margin-bottom:10px;word-wrap:break-word;font-family:Consolas,'courier new'">
+            <span class="highLT">&lt;</span><span class="highELE">tagname</span><span
+                class="highGT">&gt;</span>content<span class="highLT">&lt;</span><span
+                class="highELE">/tagname</span><span class="highGT">&gt;</span>
+        </div>
+        <ul>
+            <li>HTML tags normally come <b>in pairs</b> like &lt;p&gt; and &lt;/p&gt;</li>
+            <li>The first tag in a pair is the <b> start tag,</b> the second tag is the <b> end tag</b></li>
+            <li>The end tag is written like the start tag, but with a <strong>slash</strong> before the tag name</li>
+        </ul>
+        <hr>
+        h2>Web Browsers</h2>
+        <p>The purpose of a web browser (Chrome, IE, Firefox, Safari) is to read HTML documents and display them.</p>
+
+        <p>The browser does not display the HTML tags, but uses them to determine how to display the document:</p>
+
+        <p><img alt="View in Browser" style="height:auto;width:635px" src="../../img/img_chrome.png"
+                class="img-responsive"></p>
+        <hr>
+
+        <h2>HTML Page Structure</h2>
+
+        <p>Below is a visualization of an HTML page structure:</p>
+
+        <div style="width:99%;border:1px solid grey;padding:3px;margin:0;background-color:#ddd">&lt;html&gt;
+            <div style="width:90%;border:1px solid grey;padding:3px;margin:20px">&lt;head&gt;
+                <div style="width:90%;border:1px solid grey;padding:5px;margin:20px">&lt;title&gt;Page title&lt;/title&gt;
+                </div>
+                &lt;/head&gt;
+            </div>
+            <div style="width:90%;border:1px solid grey;padding:3px;margin:20px;background-color:#fff">&lt;body&gt;
+                <div style="width:90%;border:1px solid grey;padding:5px;margin:20px">&lt;h1&gt;This is a heading&lt;/h1&gt;</div>
+                <div style="width:90%;border:1px solid grey;padding:5px;margin:20px">&lt;p&gt;This is a paragraph.&lt;/p&gt;</div>
+                <div style="width:90%;border:1px solid grey;padding:5px;margin:20px">&lt;p&gt;This is another paragraph.&lt;/p&gt;</div>
+                &lt;/body&gt;
+            </div>
+            &lt;/html&gt;
+        </div>
+
+        <hr>
+
+        <h2>The &lt;!DOCTYPE&gt; Declaration</h2>
+
+        <p>The &lt;!DOCTYPE&gt; declaration helps the browser to display a web page correctly.</p>
+
+        <p>There are different document types on the web.</p>
+
+        <p>To display a document correctly, the browser must know both type and version.</p>
+
+        <p>The doctype declaration is not case sensitive. All cases are acceptable:</p>
+
+        <div class="example">
+            <div class="example_code notranslate htmlHigh">
+                <span class="highLT">&lt;</span><span class="highELE">!DOCTYPE</span> <span
+                    class="highATT">html</span><span class="highGT">&gt;</span><br><br>
+                <span class="highLT">&lt;</span><span class="highELE">!DOCTYPE</span> <span
+                    class="highATT">HTML</span><span class="highGT">&gt;</span><br>
+                <br><span class="highLT">&lt;</span><span class="highELE">!doctype</span> <span
+                    class="highATT">html</span><span class="highGT">&gt;</span><br>
+                <br><span class="highLT">&lt;</span><span class="highELE">!Doctype</span> <span
+                    class="highATT">Html</span><span class="highGT">&gt;</span><br>
+            </div>
+        </div>
+        <hr>
+
+        <h2>Common Declarations</h2>
+
+        <h3>HTML5</h3>
+
+        <div class="code notranslate">
+            <div>
+                &lt;!DOCTYPE html&gt;
+            </div>
+        </div>
+
+        <h3>HTML 4.01</h3>
+
+        <div class="code notranslate">
+            <div>
+                &lt;!DOCTYPE HTML PUBLIC
+                &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;
+            </div>
+        </div>
+
+        <h3>XHTML 1.0</h3>
+
+        <div class="code notranslate">
+            <div>
+                &lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+            </div>
+        </div>
+
+        <hr>
+
+        <h2>HTML Versions</h2>
+
+        <p>Since the early days of the web, there have been many versions of HTML:</p>
+        <table class="reference notranslate">
+            <tr>
+                <th>Version</th>
+                <th>Year</th>
+            </tr>
+            <tr>
+                <td>HTML</td>
+                <td>1991</td>
+            </tr>
+            <tr>
+                <td>HTML 2.0</td>
+                <td>1995</td>
+            </tr>
+            <tr>
+                <td>HTML 3.2</td>
+                <td>1997</td>
+            </tr>
+            <tr>
+                <td>HTML 4.01</td>
+                <td>1999</td>
+            </tr>
+            <tr>
+                <td>XHTML</td>
+                <td>2000</td>
+            </tr>
+            <tr>
+                <td>HTML5</td>
+                <td>2014</td>
+            </tr>
+        </table>
+
+        <br>
+
+
+        <div class="chapter">
+            <div class="prev"><a class="chapter" href="/index.php">« Back to Home</a></div>
+            <div class="next"><a class="chapter" href="#">Next Chapter »</a></div>
+        </div>
+        <br/>
     </section>
 
     <!--<section class="feature">
@@ -80,7 +276,7 @@
     <ul>
         <li id="li_tut" class="parent"><a href="#">HTML Tutorials</a>
             <ul class="child">
-                <li><a href="">HTML Introduction</a></li>
+                <li class="active"><a href="/view/html/index.html">HTML Introduction</a></li>
                 <li><a href="#">HTML Basic</a></li>
                 <li><a href="#">HTML Elements</a></li>
                 <li><a href="#">HTML Attributes</a></li>
@@ -117,10 +313,10 @@
     </ul>
 
 </nav>
-<form action="#" id="search">
+<!--<form action="#" id="search">
     <fieldset><label for="morombe">Search: </label><input name="q" id="morombe"><input type="submit" value="Search">
     </fieldset>
-</form>
+</form>-->
 <footer id="site_footer">
     <p>© St. Nicolas College - 2015.</p>
 

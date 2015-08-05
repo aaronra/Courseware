@@ -1,30 +1,159 @@
-header h1{
-    color:#e90;
+header h1 {
+    color: #e90;
 }
 
 .btn {
-  background: #3498db;
-  background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
-  background-image: -moz-linear-gradient(top, #3498db, #2980b9);
-  background-image: -ms-linear-gradient(top, #3498db, #2980b9);
-  background-image: -o-linear-gradient(top, #3498db, #2980b9);
-  background-image: linear-gradient(to bottom, #3498db, #2980b9);
-  -webkit-border-radius: 28;
-  -moz-border-radius: 28;
-  border-radius: 28px;
-  font-family: Arial;
-  color: #ffffff;
-  font-size: 20px;
-  padding: 10px 20px 10px 20px;
-  text-decoration: none;
+    background: #3498db;
+    background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+    background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+    background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+    background-image: -o-linear-gradient(top, #3498db, #2980b9);
+    background-image: linear-gradient(to bottom, #3498db, #2980b9);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 20px;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
 }
 
 .btn:hover {
-  background: #3cb0fd;
-  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
-  text-decoration: none;
+    background: #3cb0fd;
+    background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+    text-decoration: none;
+}
+
+div.chapter div.prev {
+    width: 40%;
+    float: left;
+    text-align: left;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+a.chapter {
+    color: #8AC007;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+div.chapter div.next {
+    width: 48%;
+    float: right;
+    text-align: right;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+div.chapter {
+    font-size: 20px;
+    margin: 0px;
+    padding: 0px;
+    width: auto;
+    overflow: hidden;
+}
+
+div.example {
+    width: auto;
+    color: #000000;
+    background-color: #f1f1f1;
+    padding: 15px;
+    line-height: 1.15em;
+    word-wrap: break-word;
+    margin-bottom: 12px;
+    margin-top: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+h2.example, h2.example_head {
+    font-size: 20px;
+    margin-top: 1px !important;
+}
+
+div.example_code, div.code, div.code div {
+    font-family: Consolas, "courier new";
+}
+
+div.example_code {
+    width: auto;
+    background-color: #ffffff;
+    padding: 1.1%;
+    border-left: 4px solid #8AC007;
+    word-wrap: break-word;
+}
+
+.highLT, .highGT {
+    color: blue;
+}
+
+.highELE {
+    color: brown;
+}
+
+.highATT {
+    color: red;
+}
+
+a.tryitbtn {
+    border-radius: 4px;
+    display: inline-block;
+    color: #FFFFFF;
+    background-color: #8AC007;
+    font-size: 15px;
+    text-align: center;
+    padding: 5px 16px;
+    text-decoration: none;
+    margin-left: 0;
+    margin-top: 0px;
+    margin-bottom: 5px;
+    border: 1px solid #8AC007;
+    white-space: nowrap;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+a.tryitbtn:hover {
+    background-color: #9BDA01;
+    border-color: transparent;
+    box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+}
+
+.img-responsive {
+    display: block;
+    max-width: 100%;
+    height: auto
+}
+
+div.code {
+    width: auto;
+    border: 1px solid #dddddd;
+    background-color: #f1f1f1;
+    color: #444444;
+    padding: 1.1%;
+    margin: 0;
+    word-wrap: break-word;
+    margin-bottom: 12px;
+}
+
+table.reference {
+    width: 100%;
+    max-width: 100%;
+    border-left: 1px solid #dddddd;
+    border-right: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+}
+
+table.reference tr:nth-child(even) {
+    background-color: #f1f1f1;
+}
+
+table.reference > thead > tr > th, table.reference > tbody > tr > th, table.reference > tfoot > tr > th, table.reference > thead > tr > td, table.reference > tbody > tr > td, table.reference > tfoot > tr > td {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
 }

@@ -12,6 +12,8 @@ body {
     font: 400 14px/21px "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif
 }
 
+
+
 body, #dog_tag span span {
     background: #345 url(../img/bg.gif) 0 0 fixed;
     background: -webkit-linear-gradient(rgba(204, 229, 255, .15), rgba(0, 0, 0, .3)) fixed, #345 url(../img/bg.gif) 0 0 fixed;
@@ -158,8 +160,8 @@ article h2, article p, article h3 {
 
 h3 {
     font-size: 18px;
-    color: white;
-    margin-top: 30px;
+    color: #8b2;
+    margin: 5px;
 }
 
 /*---- Code ----*/
@@ -286,11 +288,11 @@ article ul ul {
 
 article li {
     padding-left: 20px;
-    background: url(bullet_ccc.gif) 0 9px no-repeat;
+    background: url(../img/bullet_ccc.gif) 0 9px no-repeat;
 }
 
 #related li {
-    background-image: url(bullet_000.png)
+    background-image: url(../img/bullet_000.png)
 }
 
 #longlist li {
@@ -1410,11 +1412,11 @@ input#morombe:focus {
 
     article li {
         padding-left: 10px;
-        background: url(bullet_mob_ccc.gif) 0 10px no-repeat;
+        background: url(../img/bullet_ccc.gif) 0 10px no-repeat;
     }
 
     #related li {
-        background-image: url(bullet_mob_000.gif)
+        background-image: url(../img/bullet_000.png)
     }
 
     #longlist li {
@@ -1429,7 +1431,8 @@ input#morombe:focus {
         padding-left: 20px
     }
 }
-.active{
+
+.active {
     background-color: #234;
     background-color: rgba(0, 0, 0, .2);
     color: #fff;
