@@ -13,6 +13,17 @@
         <title>Login to SNC Courseware</title>
     </head>
     <body class="level0">
+    <style>
+        @media (min-width: 1200px) {
+            article {
+                max-width: 562px;
+                margin-left: 30%;
+            }
+        }
+        article form {
+            background: transparent;
+        }
+    </style>
         <div id="dog_tag">
 
     <p><a href="index.html"><img src="http://www.araldito.com/wp-content/uploads/2014/06/e2.jpg"
@@ -22,15 +33,11 @@
 <article>
 
     <header>
-        <h1>HTML, CSS and JavaScript Tutorials.</h1>
-
-        <p>Welcome to St. Nicolas College E-Learning Site, the web designer’s resource for everything HTML, CSS, and
-            JavaScript, the most common
-            technologies used in making web pages.</p>
+        <h1 style="text-align:center">Enter Credential</h1>
     </header>
 
 
-    <section id="main_content" style="width:500px;margin: 0 auto;">
+    <section id="main_content" >
         <?php
             include_once 'login/admin-class.php';
             $admin = new itg_admin();
@@ -38,9 +45,9 @@
         ?>
         <form action="login/login-action.php" method="post">
                 <fieldset>
-                    <h1 style="text-align:center">Enter Credential</h1>
+
                         <h3 style="color:red;text-align:center;">
-                            <?php 
+                            <?php
                                 if (isset($_SESSION['message']))
                                 {
                                     echo $_SESSION['message'];
@@ -49,7 +56,7 @@
                             ?>
                         </h3>
                         <p>
-                            <label for="username">Username: </label>
+                            <label for="username" >Username: </label>
                             <input type="text" name="username" id="username" value="" />
                         </p>
                         <p>
@@ -57,9 +64,9 @@
                             <input type="password" name="password" id="password" value="" />
                         </p>
                 </fieldset>
-                <p>
-                    <input type="submit" value="Submit" /> <input type="reset" value="Reset" />
-                </p>
+                <div>
+                    <input type="submit" value="Submit" class="btn" style="margin-left: 0;"/>
+                </div>
             </form>
 
     </section>
@@ -81,16 +88,6 @@
 
     <footer id="related">
 
-        <h2>Popular pages</h2>
-        <ul>
-            <li><a href="view/html/index.html">HTML Tutorial</a>: No idea where to
-                start? Try here!
-            </li>
-            <li><a href="view/css/index.html">CSS Tutorial</a>: So, you can dabble in
-                HTML but how do you make it look good?
-            </li>
-            <li><a href="view/js/index.html">JavaScript Tutorials</a>: Programming?! Orayt! Rock and Roll to the World!</li>
-        </ul>
 
     </footer>
 
