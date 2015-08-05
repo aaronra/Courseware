@@ -4,9 +4,23 @@
         <title>Login to admin</title>
     </head>
     <body>
+        <?php
+            include_once 'admin-class.php';
+            $admin = new itg_admin();
+            $admin->_authenticate();
+        ?>
         <form action="login-action.php" method="post">
             <fieldset>
                 <legend>Enter Credential</legend>
+                    
+                        <?php 
+                            if (isset($_SESSION['message']))
+                            {
+                                echo $_SESSION['message'];
+                                unset($_SESSION['message']);
+                            }
+                        ?>
+                    
                     <p>
                         <label for="username">Username: </label>
                         <input type="text" name="username" id="username" value="" />
@@ -14,11 +28,6 @@
                     <p>
                         <label for="password">Password: </label>
                         <input type="password" name="password" id="password" value="" />
-                    </p>
-                    <p>
-                        <label for="remember">
-                            <input type="checkbox" name="remember" id="remember" value="1" /> Remember me
-                        </label>
                     </p>
             </fieldset>
             <p>

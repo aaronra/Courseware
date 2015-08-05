@@ -35,8 +35,6 @@ class itg_admin {
      * to the super global $_SESSION variable
      */
     public function __construct() {
-        session_start();
-
         //store the absolute script directory
         //note that this is not the admin directory
         self::$abs_path = dirname(dirname(__FILE__));
@@ -100,25 +98,38 @@ class itg_admin {
         //first check whether session is set or not
         if(!isset($_SESSION['admin_login'])) {
             //check the cookie
-            if(isset($_COOKIE['username']) && isset($_COOKIE['password'])) {
-                //cookie found, is it really someone from the
-                if($this->_check_db($_COOKIE['username'], $_COOKIE['password'])) {
-                    $_SESSION['admin_login'] = $_COOKIE['username'];
-                    header("location: index.php");
-                    die();
-                }
-                else {
-                    header("location: login.php");
-                    die();
-                }
-            }
-            else {
-                header("location: login.php");
-                die();
-            }
+            // if(isset($_COOKIE['username']) && isset($_COOKIE['password'])) {
+            //     //cookie found, is it really someone from the
+                // if($this->_check_db($_COOKIE['username'], $_COOKIE['password'])) {
+                //     $_SESSION['admin_login'] = $_COOKIE['username'];
+                //     header("location: index.php");
+                //     die();
+                // }
+            //     else {
+            //         header("location: login.php");
+            //         die();
+            //     }
+            // }
+            // else {
+            //     header("location: login.php");
+            //     die();
+            // }
+            //$_SESSION['admin_login'] = 'fdas';
         }
     }
 
+    public function courses() {
+        global $db;
+        $courses = $db->get_results("SELECT * FROM `content`");
+        //$data = json_decode($courses, true);
+        $_SESSION['courses'] = $courses;
+        // foreach ($courses as $key => $object) {
+        //     echo $object->content;
+        // }
+        // echo "<pre>";
+        // print_r($courses);
+        // die;
+    }   
 
     /**
      * Check for login in the action file
@@ -127,13 +138,16 @@ class itg_admin {
 
         //insufficient data provided
         if(!isset($this->post['username']) || $this->post['username'] == '' || !isset($this->post['password']) || $this->post['password'] == '') {
+            $_SESSION['message'] = '*Please enter Username or Password';
             header ("location: login.php");
+            die;
         }
 
         //get the username and password
         $username = $this->post['username'];
         $password = md5(sha1($this->post['password']));
-
+        // print_r($password);
+        // die;
         //check the database for username
         if($this->_check_db($username, $password)) {
             //ready to login
@@ -154,6 +168,7 @@ class itg_admin {
             header("location: index.php");
         }
         else {
+            $_SESSION['message'] = '*Incorrect Username or Password please try again.';
             header ("location: login.php");
         }
 
@@ -173,12 +188,25 @@ class itg_admin {
     private function _check_db($username, $password) {
         global $db;
         $user_row = $db->get_row("SELECT * FROM `user` WHERE `username`='" . $db->escape($username) . "'");
-
         //general return
-        if(is_object($user_row) && md5($user_row->password) == $password)
-            return true;
-        else
-            return false;
+
+        if(is_object($user_row) && $user_row->role == "admin"){
+            if(is_object($user_row) && $user_row->password == $password){
+                return true;
+            } else { 
+                return false;
+            }
+        } else {
+            $_SESSION['message'] = '*Only Admin my enter.';
+            header ("location: login.php");
+            die;
+        }
+
+        // if(is_object($user_row) && $user_row->password == $password){
+        //     return true;
+        // } else { 
+        //     return false;
+        // }
     }
 
     /**
