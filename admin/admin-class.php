@@ -98,18 +98,20 @@ class itg_admin {
         //first check whether session is set or not
         if(!isset($_SESSION['admin_login'])) {
             //check the cookie
-            // if(isset($_COOKIE['username']) && isset($_COOKIE['password'])) {
-            //     //cookie found, is it really someone from the
-                // if($this->_check_db($_COOKIE['username'], $_COOKIE['password'])) {
-                //     $_SESSION['admin_login'] = $_COOKIE['username'];
-                //     header("location: index.php");
+            
+            if(isset($_COOKIE['username']) && isset($_COOKIE['password'])) {
+                //cookie found, is it really someone from the
+                if($this->_check_db($_COOKIE['username'], $_COOKIE['password'])) {
+                    //echo '1';die;
+                    $_SESSION['admin_login'] = $_COOKIE['username'];
+                    // header("location: index.php");
+                    // die();
+                }
+                // else {
+                //     header("location: login.php");
                 //     die();
                 // }
-            //     else {
-            //         header("location: login.php");
-            //         die();
-            //     }
-            // }
+            }
             // else {
             //     header("location: login.php");
             //     die();
@@ -134,6 +136,39 @@ class itg_admin {
     /**
      * Check for login in the action file
      */
+    // public function _login_action() {
+
+    //     //insufficient data provided
+    //     if(!isset($this->post['username']) || $this->post['username'] == '' || !isset($this->post['password']) || $this->post['password'] == '') {
+    //         $_SESSION['message'] = '*Please enter Username or Password';
+    //         header ("location: login.php");
+    //         die;
+    //     }
+
+    //     //get the username and password
+    //     $username = $this->post['username'];
+    //     $password = md5(sha1($this->post['password']));
+    //     // print_r($password);
+    //     // die;
+    //     //check the database for username
+    //     if($this->_check_db($username, $password)) {
+    //         //ready to login
+    //         $_SESSION['admin_login'] = $username;
+
+    //             setcookie("username", $username);
+    //             setcookie('password', $password);
+    //         // echo $_COOKIE['username'];
+    //         // die;
+
+    //         header("location: index.php");
+    //     }
+    //     else {
+    //         $_SESSION['message'] = '*Incorrect Username or Password please try again.';
+    //         header ("location: login.php");
+    //     }
+
+    //     die();
+    // }
     public function _login_action() {
 
         //insufficient data provided
@@ -153,17 +188,10 @@ class itg_admin {
             //ready to login
             $_SESSION['admin_login'] = $username;
 
-            //check to see if remember, ie if cookie
-            if(isset($this->post['remember'])) {
-                //set the cookies for 1 day, ie, 1*24*60*60 secs
-                //change it to something like 30*24*60*60 to remember user for 30 days
-                setcookie('username', $username, time() + 1*24*60*60);
-                setcookie('password', $password, time() + 1*24*60*60);
-            } else {
-                //destroy any previously set cookie
-                setcookie('username', '', time() - 1*24*60*60);
-                setcookie('password', '', time() - 1*24*60*60);
-            }
+                setcookie("username", $username);
+                setcookie('password', $password);
+            // echo $_COOKIE['username'];
+            // die;
 
             header("location: index.php");
         }

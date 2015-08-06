@@ -44,30 +44,26 @@
             $admin->_authenticate();
         ?>
         <form action="login/login-action.php" method="post">
-                <fieldset>
+            <fieldset>
 
-                        <h3 style="color:red;text-align:center;">
-                            <?php
-                                if (isset($_SESSION['message']))
-                                {
-                                    echo $_SESSION['message'];
-                                    unset($_SESSION['message']);
-                                }
-                            ?>
-                        </h3>
-                        <p>
-                            <label for="username" >Username: </label>
-                            <input type="text" name="username" id="username" value="" />
-                        </p>
-                        <p>
-                            <label for="password">Password: </label>
-                            <input type="password" name="password" id="password" value="" />
-                        </p>
-                </fieldset>
-                <div>
-                    <input type="submit" value="Submit" class="btn" style="margin-left: 0;"/>
-                </div>
-            </form>
+                    <h3 style="color:red;text-align:center;">
+                        <?php
+                            if (isset($_SESSION['message']))
+                            {
+                                echo $_SESSION['message'];
+                                unset($_SESSION['message']);
+                            }
+                        ?>
+                    </h3>
+                    <p>
+                        <label for="username" >Student ID: </label>
+                        <input type="text" name="student_id" id="student_id" value="" />
+                    </p>
+            </fieldset>
+            <div>
+                <input type="submit" value="Submit" class="btn" style="margin-left: 0;"/>
+            </div>
+        </form>
 
     </section>
 

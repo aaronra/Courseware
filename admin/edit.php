@@ -32,39 +32,47 @@
 
 
     <section id="main_content">
-        <?php
-            include_once 'admin-class.php';
-            $admin = new itg_admin();
-            $admin->courses();
-
-            // foreach ($_SESSION['courses'] as $key => $object) {
-            //     echo $object->content;
-            // }
-            // // echo "<pre>";
-            // // print_r($courses);
-            // die;
-        ?>
-
-        <table id="table_id" class="display">
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Content</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($_SESSION['courses'] as $key => $object): ?>
-                <tr>
-                    
-                        <td> <?php echo $object->title; ?></td>
-                        <td> <?php echo $object->content; ?></td>
-                        <td> <a href="">Edit</a>
-                </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-
+        <div class="container">
+            <div class="span10 offset1">
+                <div class="row">
+                    <h3>Update a Customer</h3>
+                </div>
+         
+                <form class="form-horizontal" action="update.php?id=<?php echo $id?>" method="post">
+                  <div class="control-group <?php echo !empty($nameError)?'error':'';?>">
+                    <label class="control-label">Name</label>
+                    <div class="controls">
+                        <input name="name" type="text"  placeholder="Name" value="<?php echo !empty($name)?$name:'';?>">
+                        <?php if (!empty($nameError)): ?>
+                            <span class="help-inline"><?php echo $nameError;?></span>
+                        <?php endif; ?>
+                    </div>
+                  </div>
+                  <div class="control-group <?php echo !empty($emailError)?'error':'';?>">
+                    <label class="control-label">Email Address</label>
+                    <div class="controls">
+                        <input name="email" type="text" placeholder="Email Address" value="<?php echo !empty($email)?$email:'';?>">
+                        <?php if (!empty($emailError)): ?>
+                            <span class="help-inline"><?php echo $emailError;?></span>
+                        <?php endif;?>
+                    </div>
+                  </div>
+                  <div class="control-group <?php echo !empty($mobileError)?'error':'';?>">
+                    <label class="control-label">Mobile Number</label>
+                    <div class="controls">
+                        <input name="mobile" type="text"  placeholder="Mobile Number" value="<?php echo !empty($mobile)?$mobile:'';?>">
+                        <?php if (!empty($mobileError)): ?>
+                            <span class="help-inline"><?php echo $mobileError;?></span>
+                        <?php endif;?>
+                    </div>
+                  </div>
+                  <div class="form-actions">
+                      <button type="submit" class="btn btn-success">Update</button>
+                      <a class="btn" href="index.php">Back</a>
+                    </div>
+                </form>
+            </div>
+        </div> <!-- /container -->
     </section>
 
     <!--<section class="feature">
@@ -107,12 +115,19 @@ $admin->_authenticate();
 ?>
 
 <nav id="main_nav">
-    <!-- check if the user is logged in -->
-    <?php
-        if(!isset($_SESSION['admin_login'])){ //if login in session is not set
-            header("Location: login.php");
-        }
-    ?>
+    <?php if(isset($_SESSION['admin_login'])): ?>
+    <ul>
+        <li id="li_tut"><a href="#">Tutorials</a>
+            <ul>
+                <li><a href="view/html/index.html">Learn HTML</a></li>
+                <li><a href="view/css/index.html">Learn CSS</a></li>
+                <li><a href="view/js/index.html">Learn JavaScript</a></li>
+            </ul>
+        </li>
+
+        <li id="access_top"><a href="#">↑ Top</a></li>
+    </ul>
+<?php endif;?>
 </nav>
 
 <form action="#" id="search">
@@ -120,7 +135,6 @@ $admin->_authenticate();
     <?php if(!isset($_SESSION['admin_login'])){ ?>
         <a class="btn" href="login.php">LOGIN</a>
     <?php } else { ?>
-        <a class="btn" href="add_user.php">ADD NEW USER</a>
         <a class="btn" href="logout.php">LOGOUT</a>
     <?php } ?>
     </fieldset>

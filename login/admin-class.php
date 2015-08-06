@@ -140,40 +140,32 @@ class itg_admin {
      * Check for login in the action file
      */
     public function _login_action() {
-
         //insufficient data provided
-        if(!isset($this->post['username']) || $this->post['username'] == '' && !isset($this->post['password']) || $this->post['password'] == '') {
-            $_SESSION['message'] = '*Please enter Username or Password';
-            header ("location: ../login.php");
+        if(!isset($this->post['student_id']) || $this->post['student_id'] == '') {
+            $_SESSION['message'] = '*Please enter Student ID';
+            header ("location: /login.php");
             die;
         }
 
         //get the username and password
-        $username = $this->post['username'];
-        $password = md5(sha1($this->post['password']));
+        $student_id = $this->post['student_id'];
         // print_r($password);
         // die;
         //check the database for username
-        if($this->_check_db($username, $password)) {
+        if($this->_check_db($student_id)) {
             //ready to login
-            $_SESSION['school'] = $username;
+            $_SESSION['school'] = $student_id;
 
             //check to see if remember, ie if cookie
-            if(isset($this->post['remember'])) {
-                //set the cookies for 1 day, ie, 1*24*60*60 secs
-                //change it to something like 30*24*60*60 to remember user for 30 days
-                setcookie('username', $username, time() + 1*24*60*60);
-                setcookie('password', $password, time() + 1*24*60*60);
-            } else {
-                //destroy any previously set cookie
-                setcookie('username', '', time() - 1*24*60*60);
-                setcookie('password', '', time() - 1*24*60*60);
-            }
+            
+            //destroy any previously set cookie
+            //setcookie('student_id', $student_id);
+               
 
             header("Location: /");
         }
         else {
-            $_SESSION['message'] = '*Incorrect Username or Password please try again.';
+            $_SESSION['message'] = '*No user id found please try again.';
             header ("location: ../login.php");
         }
 
@@ -190,11 +182,11 @@ class itg_admin {
      * @param string $password expected to be md5 over sha1
      * @return bool TRUE on success FALSE otherwise
      */
-    private function _check_db($username, $password) {
+    private function _check_db($student_id) {
         global $db;
-        $user_row = $db->get_row("SELECT * FROM `user` WHERE `username`='" . $db->escape($username) . "'");
+        $user_row = $db->get_row("SELECT * FROM `user` WHERE `student_id`='" . $db->escape($student_id) . "'");
         //general return
-        if(is_object($user_row) && $user_row->password == $password){
+        if(is_object($user_row) && $user_row->student_id == $student_id){
             return true;
         } else { 
             return false;
