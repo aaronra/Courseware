@@ -108,9 +108,9 @@ $admin->_authenticate();
     <ul>
         <li id="li_tut"><a href="#">Tutorials</a>
             <ul>
-                <li><a href="view/html/index.html">Learn HTML</a></li>
-                <li><a href="view/css/index.html">Learn CSS</a></li>
-                <li><a href="view/js/index.html">Learn JavaScript</a></li>
+                <li><a href="/view/html/index.html">Learn HTML</a></li>
+                <li><a href="/view/css/index.html">Learn CSS</a></li>
+                <li><a href="/view/js/index.html">Learn JavaScript</a></li>
             </ul>
         </li>
 

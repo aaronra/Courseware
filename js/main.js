@@ -1,5 +1,5 @@
 //user nav
-$('.child').hide();
-$('.parent').click(function() {
+$('.child').show();
+$('.parent').click(function () {
     $(this).find('ul').slideToggle();
 });

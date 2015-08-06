@@ -12,8 +12,6 @@ body {
     font: 400 14px/21px "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif
 }
 
-
-
 body, #dog_tag span span {
     background: #345 url(../img/bg.gif) 0 0 fixed;
     background: -webkit-linear-gradient(rgba(204, 229, 255, .15), rgba(0, 0, 0, .3)) fixed, #345 url(../img/bg.gif) 0 0 fixed;
@@ -1435,5 +1433,8 @@ input#morombe:focus {
 .active {
     background-color: #234;
     background-color: rgba(0, 0, 0, .2);
-    color: #fff;
+}
+
+li.active > a {
+    color: #fff !important;
 }
