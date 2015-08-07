@@ -50,6 +50,7 @@
                 <tr>
                     <th>Title</th>
                     <th>Content</th>
+                    <th>Activity</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -59,7 +60,8 @@
                     
                         <td> <?php echo $object->title; ?></td>
                         <td> <?php echo $object->content; ?></td>
-                        <td> <a href="">Edit</a>
+                        <td> <?php echo $object->sample; ?></td>
+                        <td> <a href="javascript:edt_id('<?php echo $object->id; ?>')">Edit</a>
                 </tr>
                 <?php endforeach; ?>
             </tbody>

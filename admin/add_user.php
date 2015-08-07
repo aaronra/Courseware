@@ -10,35 +10,31 @@ if(isset($_POST['btn-save']))
     // die;
  // variables for input data
  $student_id = $_POST['student_number'];
- $first_name = $_POST['firstname'];
- $last_name = $_POST['lastname'];
- $username = $_POST['username'];
- $password = md5(sha1($_POST['password']));
- $role = $_POST['role'];
  // variables for input data
- 
- //check if username exist
-$username = $db->get_row("SELECT * FROM `user` WHERE `username`='" . $db->escape($username) . "'");
-
-if(!empty($username)){
-    $_SESSION['message'] = '*Username already exists please try again.';
-    header ("location: /admin/add_user.php");
-    // die;
-}
 
  //check if student id exist
-$student_id = $db->get_row("SELECT * FROM `user` WHERE `student_id`='" . $db->escape($student_id) . "'");
+$var = $db->get_var("SELECT count(*) FROM users  WHERE `student_id`='" . $db->escape($student_id) . "' ");
 
-if(!empty($student_id)){
+if($var > 1){
     $_SESSION['message'] = '*Student ID already exists please try again.';
     header ("location: /admin/add_user.php");
     // die;
+} else {
+    $db->query("INSERT INTO users(student_id) VALUES($student_id)");
+    $_SESSION['message'] = '*Student ID has been successfully added.';
+    header ("location: /admin/add_user.php");
 }
 
-$student_id = $db->get_row("SELECT * FROM `user` WHERE `student_id`='" . $db->escape($student_id) . "'");
-die;
+// if(!empty($student_id)){
+//     $_SESSION['message'] = '*Student ID already exists please try again.';
+//     header ("location: /admin/add_user.php");
+//     // die;
+// }
+
+// $student_id = $db->get_row("SELECT * FROM `user` WHERE `student_id`='" . $db->escape($student_id) . "'");
+// die;
  // sql query for inserting data into database
-$db->query("INSERT INTO user(student_id,firstname,lastname,username,password,role) VALUES('$student_id','$first_name','$last_name','$username','$password','$role')");
+
 // sql query for inserting data into database
  
 }
@@ -98,22 +94,22 @@ $db->query("INSERT INTO user(student_id,firstname,lastname,username,password,rol
                         <label for="username" >Student Number: </label>
                         <input required type="text" name="student_number" id="student_number" value="" />
                     </p>
-                    <p>
+                    <!-- <p>
                         <label for="username" >Username: </label>
                         <input required type="text" name="username" id="username" value="" />
                     </p>
                     <p>
                         <label for="password">Password: </label>
                         <input required type="password" name="password" id="password" value="" />
-                    </p>
-                    <p>
+                    </p> -->
+                    <!-- <p>
                         <label for="username" >First name: </label>
                         <input required type="text" name="firstname" id="firstname" value="" />
                     </p>
                     <p>
                         <label for="username" >Last name: </label>
                         <input required type="text" name="lastname" id="lastname" value="" />
-                    </p>
+                    </p> -->
                     <p>
                         <label for="username" >Role: </label>
                         <select class="select-style"name="role">

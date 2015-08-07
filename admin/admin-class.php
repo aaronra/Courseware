@@ -62,7 +62,7 @@ class itg_admin {
     public function get_nicename() {
         $username = $_SESSION['admin_login'];
         global $db;
-        $info = $db->get_row("SELECT `nicename` FROM `user` WHERE `username` = '" . $db->escape($username) . "'");
+        $info = $db->get_row("SELECT `nicename` FROM `users` WHERE `username` = '" . $db->escape($username) . "'");
         if(is_object($info))
             return $info->nicename;
         else
@@ -77,7 +77,7 @@ class itg_admin {
     public function get_email() {
         $username = $_SESSION['admin_login'];
         global $db;
-        $info = $db->get_row("SELECT `email` FROM `user` WHERE `username` = '" . $db->escape($username) . "'");
+        $info = $db->get_row("SELECT `email` FROM `users` WHERE `username` = '" . $db->escape($username) . "'");
         if(is_object($info))
             return $info->email;
         else
@@ -215,7 +215,7 @@ class itg_admin {
      */
     private function _check_db($username, $password) {
         global $db;
-        $user_row = $db->get_row("SELECT * FROM `user` WHERE `username`='" . $db->escape($username) . "'");
+        $user_row = $db->get_row("SELECT * FROM `users` WHERE `username`='" . $db->escape($username) . "'");
         //general return
 
         if(is_object($user_row) && $user_row->role == "admin"){
