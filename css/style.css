@@ -1,0 +1,119 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+.top-nav.light-blue.lighten-1,
+.orange{
+    background-color: #26C122 !important;
+}
+.page-title{
+text-transform: uppercase;
+}
+.orange-text{
+color: #26C122 !important;
+}
+
+  body {
+     
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  
+  }
+
+.bg{
+    background: url("../img/bg.png") no-repeat center center;
+    background-size: cover;
+}
+  main {
+    flex: 1 0 auto;
+  }
+
+ .CodeMirror, iframe{
+        border-radius: 5px;
+ }
+
+.icon-block {
+    padding: 0 15px;
+}
+
+.icon-block .material-icons {
+    font-size: inherit;
+}
+
+#logo-container {
+    height: 97px;
+    margin-bottom: 12px;
+}
+
+ul.side-nav.fixed li.logo {
+    margin-top: 12px;
+}
+
+ul.side-nav.fixed li:hover, ul.side-nav.fixed li.active {
+    background-color: rgba(41, 182, 246, 0.5);
+}
+
+.waves-effect.waves-blue {
+    background-color: rgba(0, 150, 136, 0.7);
+}
+
+.login {
+    width: 260px;
+    height: 70px;
+    line-height: 70px;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.btn, .btn-large {
+    background-color: rgb(43, 148, 208);
+}
+
+.btn, .btn-large:hover {
+    background-color: rgb(41, 182, 246);
+}
+
+#logo-container {
+    transition: all 0.3s ease-in-out 0s;
+}
+
+#logo-container:hover {
+    cursor: pointer;
+    transform: rotate(360deg);
+    transition: all 0.3s ease-in-out 0s;
+}
+
+.promo {
+    transition: all 0.3s ease-in-out 0s;
+}
+
+.nav-text {
+    margin-left: 10px;
+}
+
+.alert-success {
+    text-align: center;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #d6e9c6;
+    border-radius: 4px;
+    color: #3c763d;
+    background-color: #dff0d8;
+}
+
+.bookmark {
+    position: absolute;
+    right: 0;
+    height: 50px;
+    width: 50px;
+}
+.bookmark {
+    position: absolute;
+    right: 0;
+    height: 50px;
+    width: 50px;
+}

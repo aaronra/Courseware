@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+    <title>SNC E-Learning</title>
+
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link href="/css/ghpages-materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+
+    <link rel=stylesheet href=/css/codemirror.css>
+    <script src=/js/codemirror.js></script>
+    <style type=text/css>
+        .CodeMirror {
+
+            border: 1px solid black;
+        }
+
+        iframe {
+            width: 100%;
+            height: 300px;
+            border: 1px solid black;
+
+        }
+    </style>
+</head>
+<body>
+<style>
+    #hide-icon-mobile {
+        display: none;
+    }
+
+    main, footer {
+        padding-left: 0;
+    }
+
+    .side-nav {
+        height: auto !important;
+        padding-bottom: 0;
+    }
+
+    ul.side-nav.fixed li.logo {
+        margin-bottom: 0;
+        overflow: hidden;
+    }
+
+    .side-nav.fixed {
+        position: absolute;
+    }
+</style>
+<header>
+    <nav class="top-nav light-blue lighten-1">
+        <div class="container">
+            <div class="nav-wrapper"><a class="page-title" style="font-family: serif;">SNC E-Learning</a></div>
+        </div>
+    </nav>
+    <div class="container"><a href="#" data-activates="nav-mobile"
+                              class="button-collapse top-nav full hide-on-large-only" style="cursor: default"></a></div>
+    <ul id="nav-mobile" class="side-nav fixed" style="left: 0px;">
+        <li class="logo"><a id="logo-container" href="/index.html" class="brand-logo">
+            <img src="/img/logo.jpg" id="front-page-logo">
+        </a></li>
+    </ul>
+</header>
+
+
+<main>
+    <div class="container">
+        <!--  Outer row  -->
+        <div class="row">
+
+            <div class="col s12">
+
+                <!-- Modal Trigger --><br><br>
+
+                <h2 class="header orange-text">HTML PREVIEW</h2>
+
+                <div class="col s12 l6 textareacontainer">
+                    <div class="textarea">
+                        <div style="overflow:auto;">
+                            <div class="headerText">Edit This Code:</div>
+                        </div>
+                        <div class="textareawrapper">
+        <textarea id=code name=code>
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>This is heading 1</h1>
+
+<h2>This is heading 2</h2>
+
+<h3>This is heading 3</h3>
+<h4>This is heading 4</h4>
+<h5>This is heading 5</h5>
+<h6>This is heading 6</h6>
+
+</body>
+</html>
+        </textarea>
+                        </div>
+                    </div>
+                </div>
+                <!-- End HTML block code -->
+                <div class="col s12 l6 iframecontainer">
+                    <div class="iframe">
+                        <div style="overflow:auto;">
+                            <div class="headerText">Result:</div>
+                        </div>
+                        <div class="iframewrapper">
+
+                            <iframe id=preview></iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                    var delay;
+                    // Initialize CodeMirror editor with a nice html5 canvas demo.
+                    var editor = CodeMirror.fromTextArea(document.getElementById('code'), {
+                        mode: 'text/html'
+                    });
+                    editor.on("change", function () {
+                        clearTimeout(delay);
+                        delay = setTimeout(updatePreview, 300);
+                    });
+
+                    function updatePreview() {
+                        var previewFrame = document.getElementById('preview');
+                        var preview = previewFrame.contentDocument || previewFrame.contentWindow.document;
+                        preview.open();
+                        preview.write(editor.getValue());
+                        preview.close();
+                    }
+                    setTimeout(updatePreview, 300);
+                </script>
+                </article>
+
+
+            </div>
+        </div>
+    </div>
+    <!-- End Container -->
+</main>
+
+<footer class="page-footer orange">
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <h2 class="header white-text">Popular pages</h2>
+                <ul>
+                    <li><a href="view/html/index.html" class="white-text">HTML Tutorial</a>: No idea where to
+                        start? Try here!
+                    </li>
+                    <li><a href="view/css/index.html" class="white-text">CSS Tutorial</a>: So, you can dabble in
+                        HTML but how do you make it look good?
+                    </li>
+                    <li><a href="view/js/index.html" class="white-text">JavaScript Tutorials</a>: Programming?! Orayt!
+                        Rock
+                        and Roll to the World!
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            © <a class="orange-text text-lighten-3" href="">St. Nicolas College</a>, All rights reserved.
+        </div>
+    </div>
+</footer>
+
+
+<!--  Scripts-->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="/js/materialize.js"></script>
+<script src="/js/init.js"></script>
+
+</body>
+</html>

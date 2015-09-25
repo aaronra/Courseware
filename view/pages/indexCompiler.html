@@ -1,0 +1,82 @@
+<!doctype html>
+
+<title>CodeMirror: HTML5 preview</title>
+<meta charset="utf-8"/>
+<link rel=stylesheet href="/css/docs.css">
+
+<link rel=stylesheet href=/js/codemirror.css>
+<link href="../../css/main.css" rel="stylesheet">
+<link href="../../css/trystyle.css" rel="stylesheet">
+<link href="../../css/style.css" rel="stylesheet">
+<link href="http://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet">
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,300,400,600,700"
+      rel="stylesheet">
+<script src=/js/codemirror.js></script>
+<!-- HTML block code -->
+<header>
+    <h1>HTML Introduction.</h1>
+</header>
+
+
+<div class="container">
+    <div class="textareacontainer">
+        <div class="textarea">
+            <div style="overflow:auto;">
+                <div class="headerText">Edit This Code:</div>
+            </div>
+            <div class="textareawrapper">
+        <textarea id=code name=code>
+   <!DOCTYPE html>
+<html>
+<head>
+    <title>Page Title</title>
+</head>
+<body>
+
+<h1>My First Heading</h1>
+
+<p>My first paragraph.</p>
+
+</body>
+</html>
+</textarea>
+            </div>
+        </div>
+    </div>
+    <div class="iframecontainer">
+        <div class="iframe">
+            <div style="overflow:auto;">
+                <div class="headerText">Result:</div>
+            </div>
+            <div class="iframewrapper">
+
+                <iframe id=preview></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script>
+    var delay;
+    // Initialize CodeMirror editor with a nice html5 canvas demo.
+    var editor = CodeMirror.fromTextArea(document.getElementById('code'), {
+        mode: 'text/html'
+    });
+    editor.on("change", function () {
+        clearTimeout(delay);
+        delay = setTimeout(updatePreview, 300);
+    });
+
+    function updatePreview() {
+        var previewFrame = document.getElementById('preview');
+        var preview = previewFrame.contentDocument || previewFrame.contentWindow.document;
+        preview.open();
+        preview.write(editor.getValue());
+        preview.close();
+    }
+    setTimeout(updatePreview, 300);
+</script>
+
