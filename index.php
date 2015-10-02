@@ -72,7 +72,6 @@
         <div class="row">
 
             <div class="col s12">
-
                 <!-- Modal Trigger --><br><br>
                 <?php if (!isset($_SESSION['school'])): ?>
                 <div class="row center">
