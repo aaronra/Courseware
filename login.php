@@ -46,7 +46,7 @@
                 class="mdi-navigation-menu"></i></a></div>
     <ul id="nav-mobile" class="side-nav fixed" style="left: 0px;">
         <li class="logo"><a id="logo-container" href="/courseware" class="brand-logo">
-                <img src="http://www.araldito.com/wp-content/uploads/2014/06/e2.jpg" id="front-page-logo">
+                <img src="img/logo.jpg" id="front-page-logo">
             </a></li>
 
     </ul>
@@ -78,7 +78,7 @@
 
                     <div class="row">
                         <div class="input-field">
-                            <input id="student_id" name="student_id" type="text" class="validate">
+                            <input id="student_id" name="student_id" style="color:white" type="text" class="validate">
                             <label class="active" for="username">Student ID</label>
                         </div>
                     </div>

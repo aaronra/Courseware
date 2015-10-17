@@ -19,14 +19,24 @@ if (isset($_POST['btn-save'])) {
     $url_content_key = $_POST['url_content_key'];
     $content = $_POST['content'];
     $activity = $_POST['activity'];
-    $output = $_POST['output'];
+    
 
-    //print_r($_POST);die;
-    $db->query("UPDATE links SET name = '$title' WHERE id = $id");
-    $db->query("UPDATE content SET content = '$content' , description = '$description' , url_content_key = '$url_content_key' , activity = '$activity' , output = '$output' WHERE link_id = $id");
-    $_SESSION['message'] = 'Content has been successfully updated!';
-    header("location: edit_page.php?id=$id");
-    die;
+    if(!empty($_POST['output'])){
+        $output = $_POST['output'];
+
+        $db->query("UPDATE links SET name = '$title' WHERE id = $id");
+        $db->query("UPDATE content SET content = '$content' , description = '$description' , url_content_key = '$url_content_key' , activity = '$activity' , output = '$output' WHERE link_id = $id");
+        $_SESSION['message'] = 'Content has been successfully updated!';
+        header("location: edit_page.php?id=$id");
+        die;
+    } else {
+        $db->query("UPDATE links SET name = '$title' WHERE id = $id");
+        $db->query("UPDATE content SET content = '$content' , description = '$description' , url_content_key = '$url_content_key' , activity = '$activity' WHERE link_id = $id");
+        $_SESSION['message'] = 'Content has been successfully updated!';
+        header("location: edit_page.php?id=$id");
+        die;
+    }
+    
 }
 ?>
 <!DOCTYPE html>
@@ -163,28 +173,26 @@ if (isset($_POST['btn-save'])) {
                     </p>
 
                     <div class="row">
+                        <div class="input-field col s12" id="activity_output">
+                            <a style="display:none" href="https://dotnetfiddle.net/" id="link" target="_blank">Click here to edit the activity</a>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s12" id="activity_output">
+                            <a href="http://www.tutorialspoint.com/compile_cpp11_online.php" id="cLink" target="_blank">Click here to edit the C++ activity</a>
+                        </div>
+                    </div>
+
+                    <div class="row">
                         <div class="input-field col s12" id="activity">
-                            <textarea name="activity" id="activity"
-                                      class="materialize-textarea">
-                                <?php echo $var->activity ?>
-                            </textarea>
+                            <textarea name="activity" id="activity" class="materialize-textarea"><?php echo $var->activity ?></textarea>
                             <label for="activity">Activity</label>
                         </div>
                     </div>
-                    <?php if($var->category_id > 3): ?>
-                        <div class="row">
-                            <div class="input-field col s12" id="activity_output">
-                                <textarea name="output" id="output"
-                                          class="materialize-textarea">
-                                          <?php echo $var->output ?>
-                                </textarea>
-                                <label for="output">Output</label>
-                            </div>
-                        </div>
-                    <?php endif;?>
 
                     <p>
-
+                    <input type="hidden" id="type" value="<?php echo $var->category_id; ?>">
                     <div>
                         <button type="submit" class='btn orange' style="margin-left: 0;" name="btn-save">
                             <strong>SAVE</strong>
@@ -218,6 +226,29 @@ if (isset($_POST['btn-save'])) {
     $(window).load(function () {
         //$('#activity').redactor({minHeight: 300});
         $('#content').redactor({minHeight: 300});
+
+        if($( "#type" ).val() < 3){
+                $('#link').hide();
+            }
+
+        if($( "#type" ).val() < 5){
+                $('#cLink').hide();
+            }
+
+        if($( "#type" ).val() == 4){
+                $('#link').show();
+            }
+
+        if($( "#type" ).val() == 5){
+                $('#cLink').show();
+            }
+
+            
+
+            if($( "#type" ).val() > 3){
+                $('#output').hide();
+            }
+
     });
     //]]>
 </script>

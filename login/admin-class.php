@@ -90,6 +90,15 @@ class itg_admin {
             return '';
     }
 
+    public function _bookmark(){
+        global $db;
+        $school_id = $_SESSION['school'];
+        $url = $_SERVER['HTTP_REFERER'];
+        $db->query("UPDATE users SET bookmark_url = '$url' WHERE student_id = $school_id");
+        header ("location: $url");
+        die;
+    }
+
     /**
      * Sample function to return the email of currently logged in admin user
      * @global ezSQL_mysql $db
@@ -178,14 +187,17 @@ class itg_admin {
         if($this->_check_db($student_id)) {
             //ready to login
             $_SESSION['school'] = $student_id;
+            global $db;
+            $info = $db->get_row("SELECT * FROM `users` WHERE `student_id` = '" . $db->escape($student_id) . "'");
+            // echo "<pre>";
+            // print_r($info->bookmark_url);die;
+            if(!empty($info->bookmark_url)){
+                header("Location: $info->bookmark_url");
+            } else {
+                header("Location: /courseware");   
+            }
 
-            //check to see if remember, ie if cookie
             
-            //destroy any previously set cookie
-            //setcookie('student_id', $student_id);
-               
-
-            header("Location: /courseware");
         }
         else {
             $_SESSION['message'] = '*No user id found please try again.';

@@ -6,39 +6,93 @@ global $db;
 //$var = $db->get_row("SELECT * FROM content  WHERE `id`='" . $db->escape($_GET['id']) . "' ");
 
 if (isset($_POST['btn-save'])) {
-    // echo "<pre>";
-    // print_r($_POST);
-    // die;
     $title = $_POST['title'];
     $description = $_POST['description'];
     $url_key = $_POST['url_content_key'];
     $content = $_POST['content'];
-    $activity = $_POST['activity'];
+    $activity = addslashes($_POST['activity']);
     $output = $_POST['output'];
     $type = $_POST['type'];
 
     //print_r($previous_page->id);die;
-
+    //echo "<pre>";print_r($_POST);die;
     $var = $db->get_var("SELECT count(*) FROM content  WHERE url_content_key ='" . $db->escape($url_key) . "' ");
 
-    if ($var > 1) {
+    if ($var > 0) {
         $_SESSION['message'] = '*URL KEY already exists please try again.';
         header("location: /courseware/admin/add_page.php");
         die;
     } else {
         $previous_page = $db->get_row("SELECT * FROM content ORDER BY id DESC LIMIT 1");
-        // echo "<pre>";
-        // print_r($previous_page);die;
-        $db->query("UPDATE content SET next_url_key = '$url_key' , previous_url_key = '$previous_page->url_content_key' WHERE id = $previous_page->id");
+        
+        if(empty($previous_page)){
 
-        //add the link
-        $db->query("INSERT INTO links(`category_id`,`name`) VALUES('$type','$title')");
-        echo $db->insert_id;
-        //insert content after link has been made
-        $db->query("INSERT INTO content(`link_id`,`url_content_key`,`description`,`content`,`previous_url_key`,`activity`,`output`) VALUES('$db->insert_id','$url_key','$description','$content','$previous_page->url_key','$activity','$output')");
-        $_SESSION['message'] = '*Content has been successfully added.';
-        header("location: /courseware/admin/index.php");
+            $db->query("UPDATE content SET next_url_key = '$url_key' , previous_url_key = '$previous_page->url_content_key' WHERE id = $previous_page->id");
+
+            //add the link
+            $db->query("INSERT INTO links(`category_id`,`name`) VALUES('$type','$title')");
+            echo $db->insert_id;
+            //insert content after link has been made
+            $db->query("INSERT INTO content(`category_id`,`link_id`,`url_content_key`,`description`,`content`,`previous_url_key`,`activity`,`output`) VALUES('$type','$db->insert_id','$url_key','$description','$content','$previous_page->url_key','$activity','$output')");
+            $_SESSION['message'] = '*Content has been successfully added.';
+            header("location: /courseware/admin/index.php");
+        } else {
+            if($previous_page->category_id == $type){
+                $page = $db->get_row("SELECT * FROM content WHERE category_id ='" . $db->escape($type) . "' ORDER BY id DESC LIMIT 1");
+                //echo "<pre>";print_r($_POST);die;
+                // echo "<pre>";
+                // print_r($page);
+                //  echo 'same';die;
+                $db->query("UPDATE content SET next_url_key = '$url_key'  WHERE id = $previous_page->id");
+                //echo "<pre>";print_r($_POST);die;
+                //add the link
+                $db->query("INSERT INTO links(`category_id`,`name`) VALUES('$type','$title')");
+                echo $db->insert_id;
+                //insert content after link has been made
+                $db->query("INSERT INTO content(`category_id`,`link_id`,`url_content_key`,`description`,`content`,`previous_url_key`,`activity`,`output`) VALUES('$type','$db->insert_id','$url_key','$description','" . addslashes($db->escape($content))  . "','$page->url_content_key','$activity','$output')");
+                $_SESSION['message'] = '*Content has been successfully added.';
+                header("location: /courseware/admin/index.php");
+                die;
+            } else {
+                
+                $page = $db->get_row("SELECT * FROM content WHERE category_id ='" . $db->escape($type) . "' ORDER BY id DESC LIMIT 1");
+                //echo "<pre>";print_r($page);die;
+                 if(!empty($page)){
+                    $db->query("UPDATE content SET next_url_key = '$url_key'  WHERE id = $page->id");
+                    //die;
+                    //add the link
+                    $db->query("INSERT INTO links(`category_id`,`name`) VALUES('$type','$title')");
+                    echo $db->insert_id;
+                    //insert content after link has been made
+                    $db->query("INSERT INTO content(`category_id`,`link_id`,`url_content_key`,`description`,`content`,`previous_url_key`,`activity`,`output`) VALUES('$type','$db->insert_id','$url_key','$description','$content','$page->url_content_key','$activity','$output')");
+                    $_SESSION['message'] = '*Content has been successfully added.';
+                    header("location: /courseware/admin/index.php");  
+                } else {
+                    $page = $db->get_row("SELECT * FROM content WHERE category_id ='" . $db->escape($type) . "' ORDER BY id DESC LIMIT 1");
+                    // echo "<pre>";
+                    // print_r($page);
+                    //  echo 'same';die;
+                    $db->query("UPDATE content SET next_url_key = '$url_key'  WHERE id = $previous_page->id");
+
+                    //add the link
+                    $db->query("INSERT INTO links(`category_id`,`name`) VALUES('$type','$title')");
+                    echo $db->insert_id;
+                    //insert content after link has been made
+                    $db->query("INSERT INTO content(`category_id`,`link_id`,`url_content_key`,`description`,`content`,`previous_url_key`,`activity`,`output`) VALUES('$type','$db->insert_id','$url_key','$description','$content','$page->url_content_key','$activity','$output')");
+                    $_SESSION['message'] = '*Content has been successfully added.';
+                    header("location: /courseware/admin/index.php");
+                    die;
+                }
+                
+            }
+        } 
+
+        
         die;
+
+
+
+        
     }
 }
 ?>
@@ -110,7 +164,7 @@ if (isset($_POST['btn-save'])) {
 
                 <h2 class="header orange-text">Add New Page</h2>
 
-                <form method="post" class="col s12" target="_self">
+                <form method="post" class="col s12" target="_self" accept-charset="windows-1252">
 
                     <?php
                     // echo "<pre>";
@@ -163,12 +217,21 @@ if (isset($_POST['btn-save'])) {
                         </textarea>
                         </p>
 
-
+                    <div class="row">
+                        <div class="input-field col s12" id="activity_output">
+                            <a href="https://dotnetfiddle.net/" id="link" target="_blank">Click here to add the VB.net activity</a>
+                        </div>
+                    </div>
 
                     <div class="row">
                         <div class="input-field col s12" id="activity_output">
-                            <textarea name="activity" id="activity" class="materialize-textarea"></textarea>
-                            <label for="activity">Activity</label>
+                            <a href="http://www.tutorialspoint.com/compile_cpp11_online.php" id="cLink" target="_blank">Click here to add the C++ activity</a>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s12" id="activity_output">
+                            <textarea name="activity" id="activity" class="materialize-textarea"></textarea><label for="activity">Activity</label>
                         </div>
                     </div>
 
@@ -178,7 +241,6 @@ if (isset($_POST['btn-save'])) {
                             <label for="output">Output</label>
                         </div>
                     </div>
-
 
                         <p>
 
@@ -219,15 +281,41 @@ if (isset($_POST['btn-save'])) {
             $('#output').hide();
         }
 
+        if($( "#type" ).val() < 3){
+            $('#link').hide();
+        }
+
+        if($( "#type" ).val() < 3){
+            $('#cLink').hide();
+        }
+
         $( "#type" ).change(function() {
             console.log($( "#type" ).val());
-            if($( "#type" ).val() < 3){
+            if($( "#type" ).val() == 4){
+                $('#link').show();
+            }
+
+            if($( "#type" ).val() < 4){
+                //alert('1');
+                $('#link').hide();
+            }
+
+            if($( "#type" ).val() == 5){
+                $('#link').hide();
+                $('#cLink').show();
+            }
+
+            if($( "#type" ).val() < 5){
+                $('#cLink').hide();
+            }
+
+            if($( "#type" ).val() < 4){
                 $('#output').hide();
             }
 
-            if($( "#type" ).val() > 3){
-                $('#output').show();
-            }
+            // if($( "#type" ).val() > 4){
+            //     $('#output').show();
+            // }
         });
     });
     //]]>

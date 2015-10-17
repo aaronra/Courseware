@@ -107,7 +107,10 @@ if (!isset($_SESSION['admin_login'])) { //if login in session is not set
                                     <td> <?php echo $object->name; ?></td>
                                     <td> <?php echo $object->url_content_key; ?></td>
                                     <td> <?php echo $object->description; ?></td>
-                                    <td><a href="edit_page.php?id=<?php echo $object->id; ?>">Edit</a></td>
+                                    <td>
+                                        <a href="edit_page.php?id=<?php echo $object->id; ?>">Edit</a> &nbsp;
+                                        <a href="delete_page.php?id=<?php echo $object->id; ?>">Delete</a>
+                                    </td>
                                 </tr>
                             <?php endforeach; ?>
                         <?php endif;?>

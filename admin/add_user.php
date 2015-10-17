@@ -53,7 +53,7 @@ if (isset($_POST['btn-save'])) {
                 class="mdi-navigation-menu"></i></a></div>
     <ul id="nav-mobile" class="side-nav fixed" style="left: 0px;">
         <li class="logo"><a id="logo-container" href="/courseware/admin" class="brand-logo">
-                <img src="/img/logo.jpg" id="front-page-logo">
+                <img src="../img/logo.jpg" id="front-page-logo">
             </a></li>
         <form action="#" id="search">
 

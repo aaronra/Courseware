@@ -9,6 +9,7 @@ if(isset($_GET['subject'])){
     // die;
     if(isset($_GET['url_key'])){
         $var = $db->get_row("SELECT * FROM content LEFT JOIN links ON content.link_id = links.id WHERE `url_content_key`='" . $db->escape($_GET['url_key']) . "' ");
+    
     } else {
         $var = $db->get_row("SELECT * FROM content LEFT JOIN links ON content.link_id = links.id WHERE `link_id`='" . $links[0]->link_id . "' ");
 
@@ -53,7 +54,7 @@ if(isset($_GET['subject'])){
 <header>
     <nav class="top-nav light-blue lighten-1">
         <div class="container">
-            <img src="../../img/bookmark.png" class="bookmark"/>
+            <a href="../../login/bookmark.php"><img src="../../img/bookmark.png" class="bookmark"/></a>
             <div class="nav-wrapper"><a class="page-title" style="font-family: serif;">SNC E-Learning</a></div>
         </div>
     </nav>
@@ -79,24 +80,26 @@ if(isset($_GET['subject'])){
         <div class="row">
 
             <div class="col s12">
-                
+                <?php if(empty($var)){
+                    //header("Location: /courseware/");
+                }?>
                 <section id="main_content">
-                    <div class="chapter" style="padding:20px 0px;">
+                    <!-- <div class="chapter" style="padding:20px 0px;">
                         <?php if(!empty($var->previous_url_key)): ?>
-                            <span class="prev" style="float:left;"><a class="chapter" href="?subject=<?php echo $links[0]->url_key ?>&url_key=<?php echo $var->previous_url_key ?>">« Back to Home</a></span>
+                            <span class="prev" style="float:left;"><a class="chapter" href="?subject=<?php echo $links[0]->url_key ?>&url_key=<?php echo $var->previous_url_key ?>">« Previous Chapter</a></span>
                         <?php endif; ?>
 
                         <?php if(!empty($var->next_url_key)): ?>
                             <span class="next" style="float:right;"><a class="chapter" href="?subject=<?php echo $links[0]->url_key ?>&url_key=<?php echo $var->next_url_key ?>">Next Chapter »</a></span>
                         <?php endif; ?>
-                    </div>
+                    </div> -->
 <h2 class="header orange-text"><?php echo $var->name; ?></h2>
 
 
                     <?php echo $var->content; ?>
 
                     <!-- activity section -->
-                    <?php if(!empty($links[0]->category_id) && $links[0]->category_id < 3): ?>
+                    <?php if(!empty($links[0]->category_id) && $links[0]->category_id < 4): ?>
                     <h2 class="header orange-text">Example</h2>
                     <div class="col s12 l6 textareacontainer">
                     <div class="textarea">
@@ -104,9 +107,7 @@ if(isset($_GET['subject'])){
                             <div class="headerText">Edit This Code:</div>
                         </div>
                         <div class="textareawrapper">
-                    <textarea id="code" name=code>  
-                        <?php echo (!empty($var->activity) ? $var->activity : '' ); ?>
-                    </textarea>
+                    <textarea id="code" name=code><?php echo (!empty($var->activity) ? $var->activity : '' ); ?></textarea>
                 </div>
                 </div>
             </div>
@@ -125,27 +126,31 @@ if(isset($_GET['subject'])){
                     <?php endif; ?>
 
                     <!-- activity section -->
-                    <?php if(!empty($links[0]->category_id) && $links[0]->category_id > 3): ?>
+                    <?php if(!empty($links[0]->category_id) && $links[0]->category_id == 4): ?>
                         <label for="username">Activity: </label>
-                        <textarea name="activity" id="activity" rows="14" disabled style="width:300px;resize:none;">
-                            <?php echo $var->activity ?>
-                        </textarea>
-
-                        <label for="username">Output: </label>
-                        <textarea name="output" id="output" rows="14" disabled style="width:300px;resize:none;">
-                            <?php echo $var->output ?>
-                        </textarea>
+                        <?php echo $var->activity ?>
                     <?php endif; ?>
 
-                    <div class="chapter" style="padding:20px 0px;">
+                    <?php if(!empty($links[0]->category_id) && $links[0]->category_id == 5): ?>
+                       <!--  <label for="username">Activity: </label>
+                        <textarea name="activity" id="activity" rows="14" disabled style="width:300px;resize:none;height:300px;"><?php echo $var->activity ?></textarea>
+
+                        <label for="username">Output: </label>
+                        <textarea name="output" id="output" rows="14" disabled style="width:300px;resize:none;height:300px;"><?php echo $var->output ?></textarea> -->
+                        <?php if(!empty($var->activity)): ?>
+                            <a href="<?php echo $var->activity;?>" target="_blank">CLick this to view the activity</a>
+                        <?php endif; ?>
+                    <?php endif; ?>
+
+                    <!-- <div class="chapter" style="padding:20px 0px;">
                         <?php if(!empty($var->previous_url_key)): ?>
-                            <span class="prev" style="float:left;"><a class="chapter" href="?subject=<?php echo $links[0]->url_key ?>&url_key=<?php echo $var->previous_url_key ?>">« Back to Home</a></span>
+                            <span class="prev" style="float:left;"><a class="chapter" href="?subject=<?php echo $links[0]->url_key ?>&url_key=<?php echo $var->previous_url_key ?>">« Previous</a></span>
                         <?php endif; ?>
 
                         <?php if(!empty($var->next_url_key)): ?>
                             <span class="next" style="float:right;"><a class="chapter" href="?subject=<?php echo $links[0]->url_key ?>&url_key=<?php echo $var->next_url_key ?>">Next Chapter »</a></span>
                         <?php endif; ?>
-                    </div>
+                    </div> -->
                     <br/>
                 </section>
 
